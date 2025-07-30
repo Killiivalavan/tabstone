@@ -25,12 +25,27 @@ let selectedTabIds = new Set();
 document.addEventListener('DOMContentLoaded', () => {
   console.log('TABSTONE popup loaded');
   
+  // Setup logo error handling
+  setupLogoErrorHandling();
+  
   // Add event listeners
   setupEventListeners();
   
   // Load and display current tabs
   loadCurrentTabs();
 });
+
+// Setup logo error handling
+function setupLogoErrorHandling() {
+  const logoImg = document.querySelector('.logo-img');
+  if (logoImg) {
+    logoImg.addEventListener('error', function() {
+      // Fallback to emoji if image fails to load
+      this.style.display = 'none';
+      this.parentElement.innerHTML = '🪦';
+    });
+  }
+}
 
 // Setup event listeners
 function setupEventListeners() {
