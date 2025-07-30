@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TABSTONE</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">🪦</div>
+                <div class="header-text">
+                    <h1 class="title">tabstone</h1>
+                </div>
+                <div class="header-action">
+                    <button id="buryAllBtn" class="btn btn-primary">bury current tabs</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Group Name Input -->
+            <div class="controls-row">
+                <div class="input-group" id="groupNameContainer">
+                    <input 
+                        type="text" 
+                        id="groupName" 
+                        class="input" 
+                        placeholder="name your tab group"
+                        maxlength="50"
+                        disabled
+                    >
+                </div>
+                <button id="selectTabsBtn" class="btn btn-secondary">select tabs</button>
+            </div>
+
+            <!-- Tabs List -->
+            <div id="tabsContainer" class="tabs-container">
+                <div id="tabsList" class="tabs-list">
+                    <!-- Tabs will be dynamically inserted here -->
+                </div>
+            </div>
+
+            <!-- Visit Graveyard Button -->
+            <div class="footer-action">
+                <button id="visitGraveyardBtn" class="btn btn-footer">visit graveyard</button>
+            </div>
+
+            <!-- Status Messages -->
+            <div id="statusContainer" class="status-container hidden">
+                <div id="statusMessage" class="status-message"></div>
+            </div>
+
+            <!-- Loading Spinner -->
+            <div id="loadingContainer" class="loading-container hidden">
+                <div class="spinner"></div>
+                <p class="loading-text">Processing...</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Warning Dialog -->
+    <div id="warningDialog" class="warning-dialog hidden">
+        <div class="warning-content">
+            <div class="warning-header">
+                <h3>⚠️ Warning</h3>
+            </div>
+            <div class="warning-body">
+                <p>Burying all tabs will close the entire browser window, including this popup.</p>
+                <p>Are you sure you want to continue?</p>
+            </div>
+            <div class="warning-actions">
+                <button id="confirmBuryBtn" class="btn btn-danger">Yes, Bury All Tabs</button>
+                <button id="cancelBuryBtn" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab Template -->
+    <template id="tabTemplate">
+        <div class="tab-item">
+            <div class="tab-checkbox hidden">
+                <input type="checkbox" class="tab-select">
+            </div>
+            <div class="tab-favicon">
+                <img src="" alt="" class="favicon-img">
+            </div>
+            <div class="tab-content">
+                <div class="tab-title">tab name</div>
+                <div class="tab-url">tab URL</div>
+            </div>
+            <div class="tab-actions">
+                <button class="btn btn-small btn-bury-tab">bury</button>
+            </div>
+        </div>
+    </template>
+
+    <script src="popup.js"></script>
+</body>
+</html> 

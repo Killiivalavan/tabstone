@@ -1,0 +1,471 @@
+/* TABSTONE Popup Styles - Clean Professional Design */
+
+/* CSS Custom Properties for Color Palette */
+:root {
+  --color-dark: #1F1F1F;
+  --color-orange: #FF6F00;
+  --color-brown: #A65E2E;
+  --color-light: #B3B3B3;
+  --color-white: #FFFFFF;
+  --color-hover: rgba(255, 111, 0, 0.1);
+  --color-border: #333333;
+  --color-success: #4CAF50;
+  --color-error: #F44336;
+  --transition: all 0.2s ease;
+}
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  background: var(--color-dark);
+  color: var(--color-white);
+  width: 400px;
+  height: 500px;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Container */
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--color-dark);
+}
+
+/* Header */
+.header {
+  background: var(--color-dark);
+  border-bottom: 1px solid var(--color-border);
+  padding: 12px 16px;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.header-text {
+  flex: 1;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-white);
+  margin: 0;
+}
+
+.header-action {
+  flex-shrink: 0;
+}
+
+/* Main Content */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 16px;
+  overflow: hidden;
+}
+
+/* Controls Row */
+.controls-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Input Group */
+.input-group {
+  flex: 1;
+}
+
+.input {
+  width: 100%;
+  padding: 8px 12px;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-dark);
+  font-size: 14px;
+  transition: var(--transition);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-orange);
+  box-shadow: 0 0 0 2px rgba(255, 111, 0, 0.2);
+}
+
+.input:disabled {
+  background: var(--color-dark);
+  color: var(--color-light);
+  border-color: var(--color-border);
+  cursor: not-allowed;
+}
+
+.input:disabled::placeholder {
+  color: var(--color-light);
+  opacity: 0.5;
+}
+
+.input::placeholder {
+  color: var(--color-light);
+}
+
+/* Tabs Container */
+.tabs-container {
+  flex: 1;
+  background: var(--color-dark);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.tabs-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0;
+}
+
+/* Tab Item */
+.tab-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-dark);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.tab-item:last-child {
+  border-bottom: none;
+}
+
+.tab-item:hover {
+  background: var(--color-hover);
+}
+
+.tab-item.selected {
+  background: var(--color-hover);
+}
+
+/* Tab Checkbox */
+.tab-checkbox {
+  display: flex;
+  align-items: center;
+  margin-right: 4px;
+}
+
+.tab-select {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--color-orange);
+  cursor: pointer;
+}
+
+/* Tab Favicon */
+.tab-favicon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5f5;
+  border-radius: 50%;
+}
+
+.favicon-img {
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  object-fit: contain;
+}
+
+.tab-favicon:empty::before {
+  content: "🌐";
+  font-size: 12px;
+}
+
+/* Tab Content */
+.tab-content {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.tab-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 2px;
+}
+
+.tab-url {
+  font-size: 12px;
+  color: var(--color-light);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Tab Actions */
+.tab-actions {
+  flex-shrink: 0;
+}
+
+/* Buttons */
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--color-orange);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background: #e65100;
+}
+
+.btn-secondary {
+  background: var(--color-light);
+  color: var(--color-dark);
+  border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover {
+  background: #999999;
+  color: var(--color-white);
+}
+
+.btn-small {
+  padding: 6px 12px;
+  font-size: 12px;
+  min-height: 28px;
+}
+
+.btn-bury-tab {
+  background: var(--color-brown);
+  color: var(--color-white);
+}
+
+.btn-bury-tab:hover {
+  background: #8b4513;
+}
+
+.btn-footer {
+  background: var(--color-dark);
+  color: var(--color-white);
+  border: 1px solid var(--color-border);
+  width: 100%;
+  padding: 12px;
+  margin-top: auto;
+}
+
+.btn-footer:hover {
+  background: var(--color-border);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Footer Action */
+.footer-action {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-border);
+}
+
+/* Status Container */
+.status-container {
+  margin-top: 8px;
+}
+
+.status-message {
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.status-message.success {
+  background: rgba(76, 175, 80, 0.1);
+  color: var(--color-success);
+  border: 1px solid var(--color-success);
+}
+
+.status-message.error {
+  background: rgba(244, 67, 54, 0.1);
+  color: var(--color-error);
+  border: 1px solid var(--color-error);
+}
+
+/* Loading Container */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-light);
+  border-top: 2px solid var(--color-orange);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loading-text {
+  font-size: 13px;
+  color: var(--color-light);
+}
+
+/* Warning Dialog */
+.warning-dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.warning-content {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 320px;
+  width: 90%;
+  color: var(--color-dark);
+}
+
+.warning-header {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.warning-header h3 {
+  color: var(--color-orange);
+  font-size: 16px;
+}
+
+.warning-body {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.warning-body p {
+  margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.warning-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.warning-actions .btn {
+  flex: 1;
+}
+
+.btn-danger {
+  background: var(--color-error);
+  color: var(--color-white);
+}
+
+.btn-danger:hover {
+  background: #d32f2f;
+}
+
+/* Animations */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Scrollbar Styling */
+.tabs-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.tabs-list::-webkit-scrollbar-track {
+  background: var(--color-dark);
+}
+
+.tabs-list::-webkit-scrollbar-thumb {
+  background: var(--color-light);
+  border-radius: 3px;
+}
+
+.tabs-list::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brown);
+}
+
+/* No tabs message */
+.no-tabs {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--color-light);
+  font-style: italic;
+}
+
+/* Hidden utility class */
+.hidden {
+  display: none !important;
+}
+
+/* Focus styles for accessibility */
+.btn:focus,
+.input:focus {
+  outline: 2px solid var(--color-orange);
+  outline-offset: 2px;
+}

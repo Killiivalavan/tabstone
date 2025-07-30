@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TABSTONE Graveyard</title>
+    <link rel="stylesheet" href="graveyard.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">🪦</div>
+                <div class="header-text">
+                    <h1 class="title">tabstone</h1>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Page Title -->
+            <div class="page-header">
+                <h2 class="page-title">graveyard</h2>
+                <button id="refreshBtn" class="btn btn-secondary">refresh</button>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loadingContainer" class="loading-container">
+                <div class="spinner"></div>
+                <p class="loading-text">Loading your buried tabs...</p>
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyContainer" class="empty-container hidden">
+                <div class="empty-icon">🪦</div>
+                <h2 class="empty-title">No Buried Tabs</h2>
+                <p class="empty-text">Your graveyard is barren. Bury some tabs to see them here.</p>
+                <button id="buryTabsBtn" class="btn btn-primary">
+                    🪦 Bury Some Tabs
+                </button>
+            </div>
+
+            <!-- Groups Container -->
+            <div id="groupsContainer" class="groups-container hidden">
+                <!-- Groups will be dynamically inserted here -->
+            </div>
+
+            <!-- Error State -->
+            <div id="errorContainer" class="error-container hidden">
+                <div class="error-icon">💀</div>
+                <h2 class="error-title">Something went wrong</h2>
+                <p id="errorMessage" class="error-text">An error occurred while digging your graveyard.</p>
+                <button id="retryBtn" class="btn btn-primary">
+                    🔄 Try Again
+                </button>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p class="footer-text">Your digital artifacts are safe here</p>
+        </footer>
+    </div>
+
+    <!-- Templates -->
+    <template id="groupTemplate">
+        <div class="group-card">
+            <div class="group-header">
+                <div class="group-info">
+                    <h3 class="group-name"></h3>
+                    <div class="group-meta">
+                        <span class="group-date"></span>
+                        <span class="group-count"></span>
+                    </div>
+                </div>
+                <div class="group-actions">
+                    <button class="btn btn-primary btn-sm resurrect-all-btn" title="Resurrect all tabs in this group">
+                        resurrect group
+                    </button>
+                    <button class="btn btn-delete btn-sm delete-group-btn" title="delete">
+                        -
+                    </button>
+                </div>
+            </div>
+            <div class="tabs-container">
+                <!-- Tabs will be dynamically inserted here -->
+            </div>
+        </div>
+    </template>
+
+    <template id="tabTemplate">
+        <div class="tab-item">
+            <div class="tab-info">
+                <img class="tab-favicon" src="" alt="">
+                <div class="tab-details">
+                    <h4 class="tab-title"></h4>
+                    <a class="tab-url" href="" target="_blank" title=""></a>
+                </div>
+            </div>
+            <div class="tab-actions">
+                <button class="btn btn-brown btn-sm resurrect-tab-btn" title="Resurrect this tab">
+                    resurrect
+                </button>
+                <button class="btn btn-delete btn-sm delete-tab-btn" title="delete">
+                    -
+                </button>
+            </div>
+        </div>
+    </template>
+
+    <script src="graveyard.js"></script>
+</body>
+</html> 
