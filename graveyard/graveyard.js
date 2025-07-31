@@ -136,6 +136,7 @@ function createGroupElement(groupName, groupData) {
   const groupCountElement = groupCard.querySelector('.group-count');
   
   const date = new Date(groupData.timestamp);
+  console.log(`Group "${groupName}" timestamp:`, groupData.timestamp, 'Parsed date:', date, 'Formatted:', formatDate(date));
   groupDateElement.textContent = `📅 ${formatDate(date)}`;
   groupCountElement.textContent = `📄 ${groupData.tabs.length} tab${groupData.tabs.length !== 1 ? 's' : ''}`;
   
@@ -435,15 +436,29 @@ function formatDate(date) {
   const now = new Date();
   const diff = now - date;
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(diff / (1000 * 60 * 60));
+  const minutes = Math.floor(diff / (1000 * 60));
   
   if (days === 0) {
-    return 'Today';
+    if (hours === 0) {
+      if (minutes === 0) {
+        return 'Just now';
+      } else {
+        return `${minutes} minute${minutes !== 1 ? 's' : ''} ago`;
+      }
+    } else {
+      return `${hours} hour${hours !== 1 ? 's' : ''} ago`;
+    }
   } else if (days === 1) {
     return 'Yesterday';
   } else if (days < 7) {
     return `${days} days ago`;
   } else {
-    return date.toLocaleDateString();
+    return date.toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric'
+    });
   }
 }
 

@@ -321,9 +321,20 @@ async function openMultipleTabs(urls) {
 }
 
 // Storage management functions
-async function saveTabGroup(groupName, tabs) {
+async function saveTabGroup(groupName, tabs, preserveTimestamp = false) {
+  let timestamp;
+  
+  if (preserveTimestamp) {
+    // Preserve existing timestamp when updating a group
+    const existing = await chrome.storage.local.get(groupName);
+    timestamp = existing[groupName]?.timestamp || new Date().toISOString();
+  } else {
+    // Create new timestamp for new groups
+    timestamp = new Date().toISOString();
+  }
+  
   const groupData = {
-    timestamp: new Date().toISOString(),
+    timestamp: timestamp,
     tabs: tabs
   };
   // Merge with existing groups
@@ -358,7 +369,7 @@ async function deleteTabFromGroup(groupName, tabIndex) {
     // If no tabs left, delete the entire group
     await deleteTabGroup(groupName);
   } else {
-    // Update the group with remaining tabs
-    await saveTabGroup(groupName, group.tabs);
+    // Update the group with remaining tabs, preserving the original timestamp
+    await saveTabGroup(groupName, group.tabs, true);
   }
 } 
