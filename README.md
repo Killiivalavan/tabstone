@@ -39,11 +39,6 @@ A Chrome Extension that helps you declutter browser tabs without forgetting them
    - Click the TABSTONE icon in your Chrome toolbar
    - Try burying some tabs and visiting the graveyard
 
-### Building for Production
-1. **Create a ZIP file** of the project folder
-2. **Submit to Chrome Web Store** (if distributing publicly)
-3. **Or distribute the ZIP** for manual installation
-
 ---
 
-**Built with guilt for a guilt-free tab management - by Killiivalavan** 
+**Because tab anxiety is real - built by Killiivalavan** 
