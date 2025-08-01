@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "tabstone",
   "version": "1.0.0",
-  "description": "Organize and declutter your browser tabs with a unique graveyard theme. Bury tabs into named groups and resurrect them later. Perfect for managing multiple projects or research sessions.",
+  "description": "Organize and declutter browser tabs with a graveyard theme. Bury tabs into groups and resurrect them later.",
   "permissions": ["tabs", "storage", "activeTab"],
   "host_permissions": [],
   "action": {
