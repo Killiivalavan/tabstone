@@ -1,0 +1,43 @@
+
+{
+  "name": "tabstone",
+  "version": "1.0.0",
+  "description": "Organize and declutter browser tabs with a graveyard theme",
+  "main": "index.js",
+  "scripts": {
+    "clean": "if exist dist rmdir /s /q dist",
+    "build:chrome": "node build/build-chrome.js",
+    "build:firefox": "node build/build-firefox.js",
+    "build:all": "npm run clean && npm run build:chrome && npm run build:firefox",
+    "dev:chrome": "npm run build:chrome && echo 'Load dist/chrome as unpacked extension in Chrome'",
+    "dev:firefox": "npm run build:firefox && echo 'Load dist/firefox as temporary add-on in Firefox'",
+    "test:chrome": "npm run build:chrome && echo 'Test dist/chrome in Chrome'",
+    "test:firefox": "npm run build:firefox && echo 'Test dist/firefox in Firefox'",
+    "package:chrome": "npm run build:chrome && echo 'Manually zip dist/chrome/ for Chrome Web Store'",
+    "package:firefox": "npm run build:firefox && echo 'Manually zip dist/firefox/ for Firefox Add-ons'",
+    "package:all": "npm run package:chrome && npm run package:firefox",
+    "version:bump:patch": "npm version patch && node build/update-manifest-version.js",
+    "version:bump:minor": "npm version minor && node build/update-manifest-version.js",
+    "version:bump:major": "npm version major && node build/update-manifest-version.js",
+    "release": "npm run version:bump:patch && npm run build:all && npm run package:all",
+    "release:minor": "npm run version:bump:minor && npm run build:all && npm run package:all",
+    "release:major": "npm run version:bump:major && npm run build:all && npm run package:all"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/TABSTONE.git"
+  },
+  "keywords": [
+    "browser-extension",
+    "webextension",
+    "tabs",
+    "productivity",
+    "chrome",
+    "firefox"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

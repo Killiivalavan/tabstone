@@ -1,6 +1,9 @@
 // TABSTONE Popup JavaScript
 // Handles popup UI interactions and communication with background script
 
+// Browser compatibility - Direct browser API detection
+const browserAPI = (typeof browser !== 'undefined') ? browser : chrome;
+
 // DOM Elements
 const groupNameInput = document.getElementById('groupName');
 const selectTabsBtn = document.getElementById('selectTabsBtn');
@@ -86,7 +89,7 @@ function setupEventListeners() {
 // Save group name to storage (for multiple tabs)
 async function saveGroupName(groupName) {
   try {
-    await chrome.storage.local.set({ lastGroupName: groupName });
+    await browserAPI.storage.local.set({ lastGroupName: groupName });
   } catch (error) {
     console.error('Error saving group name:', error);
   }
@@ -510,9 +513,9 @@ async function handleVisitGraveyard() {
 // Send message to background script
 function sendMessage(message) {
   return new Promise((resolve, reject) => {
-    chrome.runtime.sendMessage(message, (response) => {
-      if (chrome.runtime.lastError) {
-        reject(new Error(chrome.runtime.lastError.message));
+    browserAPI.runtime.sendMessage(message, (response) => {
+      if (browserAPI.runtime.lastError) {
+        reject(new Error(browserAPI.runtime.lastError.message));
       } else {
         resolve(response);
       }

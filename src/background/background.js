@@ -1,8 +1,13 @@
 // TABSTONE Background Service Worker
 // Handles extension lifecycle and cross-component communication
 
+// Browser compatibility
+const isFirefox = typeof browser !== 'undefined' && typeof chrome === 'undefined';
+const isChrome = typeof chrome !== 'undefined';
+const browserAPI = isFirefox ? browser : chrome;
+
 // Extension installation handler
-chrome.runtime.onInstalled.addListener((details) => {
+browserAPI.runtime.onInstalled.addListener((details) => {
   console.log('TABSTONE extension installed:', details.reason);
   
   if (details.reason === 'install') {
@@ -12,7 +17,7 @@ chrome.runtime.onInstalled.addListener((details) => {
 });
 
 // Message handling infrastructure
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+browserAPI.runtime.onMessage.addListener((request, sender, sendResponse) => {
   console.log('Background received message:', request);
   
   switch (request.action) {
@@ -236,7 +241,7 @@ async function handleDeleteTab(groupName, tabIndex, sendResponse) {
 // Handle opening the graveyard page
 async function handleOpenGraveyard(sendResponse) {
   try {
-    const graveyardUrl = chrome.runtime.getURL('graveyard/graveyard.html');
+    const graveyardUrl = browserAPI.runtime.getURL('graveyard/graveyard.html');
     await openTab(graveyardUrl);
     sendResponse({ success: true });
   } catch (error) {
@@ -247,7 +252,7 @@ async function handleOpenGraveyard(sendResponse) {
 
 // Tab management functions
 async function getCurrentTabs() {
-  const tabs = await chrome.tabs.query({ currentWindow: true });
+  const tabs = await browserAPI.tabs.query({ currentWindow: true });
   return tabs.map(tab => ({
     id: tab.id,
     title: tab.title,
@@ -260,10 +265,10 @@ async function getCurrentTabs() {
 async function getTabsByIds(tabIds) {
   try {
     const tabs = [];
-    // chrome.tabs.query doesn't support tabIds parameter, so we need to get each tab individually
+    // browserAPI.tabs.query doesn't support tabIds parameter, so we need to get each tab individually
     for (const tabId of tabIds) {
       try {
-        const tab = await chrome.tabs.get(tabId);
+        const tab = await browserAPI.tabs.get(tabId);
         tabs.push({
           id: tab.id,
           title: tab.title,
@@ -286,7 +291,7 @@ async function getTabsByIds(tabIds) {
 
 async function getTabById(tabId) {
   try {
-    const tab = await chrome.tabs.get(tabId);
+    const tab = await browserAPI.tabs.get(tabId);
     return {
       id: tab.id,
       title: tab.title,
@@ -302,7 +307,7 @@ async function getTabById(tabId) {
 
 async function closeTabs(tabIds) {
   try {
-    await chrome.tabs.remove(tabIds);
+    await browserAPI.tabs.remove(tabIds);
   } catch (error) {
     console.warn('Error closing tabs (some may already be closed):', error);
     // Don't throw the error - some tabs might already be closed
@@ -311,12 +316,12 @@ async function closeTabs(tabIds) {
 }
 
 async function openTab(url) {
-  await chrome.tabs.create({ url });
+  await browserAPI.tabs.create({ url });
 }
 
 async function openMultipleTabs(urls) {
   for (const url of urls) {
-    await chrome.tabs.create({ url });
+    await browserAPI.tabs.create({ url });
   }
 }
 
@@ -326,7 +331,7 @@ async function saveTabGroup(groupName, tabs, preserveTimestamp = false) {
   
   if (preserveTimestamp) {
     // Preserve existing timestamp when updating a group
-    const existing = await chrome.storage.local.get(groupName);
+    const existing = await browserAPI.storage.local.get(groupName);
     timestamp = existing[groupName]?.timestamp || new Date().toISOString();
   } else {
     // Create new timestamp for new groups
@@ -338,23 +343,23 @@ async function saveTabGroup(groupName, tabs, preserveTimestamp = false) {
     tabs: tabs
   };
   // Merge with existing groups
-  const existing = await chrome.storage.local.get(null);
+  const existing = await browserAPI.storage.local.get(null);
   existing[groupName] = groupData;
-  await chrome.storage.local.set(existing);
+  await browserAPI.storage.local.set(existing);
 }
 
 async function getAllTabGroups() {
-  const result = await chrome.storage.local.get(null);
+  const result = await browserAPI.storage.local.get(null);
   return result;
 }
 
 async function getTabGroup(groupName) {
-  const result = await chrome.storage.local.get(groupName);
+  const result = await browserAPI.storage.local.get(groupName);
   return result[groupName];
 }
 
 async function deleteTabGroup(groupName) {
-  await chrome.storage.local.remove(groupName);
+  await browserAPI.storage.local.remove(groupName);
 }
 
 async function deleteTabFromGroup(groupName, tabIndex) {

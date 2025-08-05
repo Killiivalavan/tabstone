@@ -1,6 +1,9 @@
 // TABSTONE Graveyard JavaScript
 // Handles graveyard page functionality and tab management
 
+// Browser compatibility - Direct browser API detection
+const browserAPI = (typeof browser !== 'undefined') ? browser : chrome;
+
 // DOM Elements
 const loadingContainer = document.getElementById('loadingContainer');
 const emptyContainer = document.getElementById('emptyContainer');
@@ -324,9 +327,9 @@ async function handleDeleteTab(groupName, tabIndex) {
 // Send message to background script
 function sendMessage(message) {
   return new Promise((resolve, reject) => {
-    chrome.runtime.sendMessage(message, (response) => {
-      if (chrome.runtime.lastError) {
-        reject(new Error(chrome.runtime.lastError.message));
+    browserAPI.runtime.sendMessage(message, (response) => {
+      if (browserAPI.runtime.lastError) {
+        reject(new Error(browserAPI.runtime.lastError.message));
       } else {
         resolve(response);
       }

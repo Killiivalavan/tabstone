@@ -1,115 +1,53 @@
-# TABSTONE Chrome Extension - .gitignore
-
 # ===========================================
-# Operating System Files
+# TABSTONE Browser Extension .gitignore
 # ===========================================
 
-# macOS
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
+# Build outputs
+dist/
+*.zip
+*.xpi
+*.crx
 
-# Windows
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-$RECYCLE.BIN/
-*.lnk
-
-# Linux
-*~
-.fuse_hidden*
-.directory
-.Trash-*
-.nfs*
-
-# ===========================================
-# Development Tools & IDEs
-# ===========================================
-
-# Visual Studio Code
-.vscode/
-*.code-workspace
-
-# Sublime Text
-*.sublime-project
-*.sublime-workspace
-
-# Atom
-.atom/
-
-# WebStorm/IntelliJ
-.idea/
-*.iml
-*.ipr
-*.iws
-
-# Vim
-*.swp
-*.swo
-*~
-
-# Emacs
-*~
-\#*\#
-/.emacs.desktop
-/.emacs.desktop.lock
-*.elc
-auto-save-list
-tramp
-.\#*
-
-# ===========================================
-# Node.js (if you add build tools later)
-# ===========================================
-
+# Dependencies
 node_modules/
+
+# Logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-package-lock.json
-yarn.lock
+lerna-debug.log*
 
-# ===========================================
-# Build & Distribution
-# ===========================================
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
 
-# Chrome Extension packaging
-*.crx
-*.pem
-*.zip
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
 
-# Build directories
-dist/
-build/
-out/
+# nyc test coverage
+.nyc_output
 
-# Temporary files
-*.tmp
-*.temp
-*.bak
-*.backup
+# Dependency directories
+jspm_packages/
 
-# ===========================================
-# Logs & Debugging
-# ===========================================
+# Optional npm cache directory
+.npm
 
-# Log files
-*.log
-logs/
-debug.log
-error.log
+# Optional eslint cache
+.eslintcache
 
-# Chrome DevTools
-*.devtools
+# Optional REPL history
+.node_repl_history
 
-# ===========================================
-# Environment & Configuration
-# ===========================================
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
 
 # Environment variables
 .env
@@ -118,92 +56,59 @@ error.log
 .env.test.local
 .env.production.local
 
-# Configuration files with sensitive data
-config.local.js
-settings.local.json
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 
-# ===========================================
-# Testing
-# ===========================================
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
-# Test coverage
-coverage/
-.nyc_output/
-
-# Test results
-test-results/
-junit.xml
-
-# ===========================================
-# Documentation
-# ===========================================
-
-# Generated documentation
-docs/_build/
-docs/.doctrees/
-
-# ===========================================
-# Chrome Extension Specific
-# ===========================================
-
-# Chrome extension development files
-*.crx
-*.pem
-*.zip
-
-# Extension reloader files
-extension-reloader.js
-
-# ===========================================
-# Asset Processing (if you add build tools)
-# ===========================================
-
-# Processed assets
-assets/processed/
-assets/optimized/
-
-# Source maps
-*.map
-
-# ===========================================
-# Backup & Archive Files
-# ===========================================
-
-# Archive files
-*.7z
-*.dmg
-*.gz
-*.iso
-*.jar
-*.rar
-*.tar
-*.zip
-
-# Backup files
+# Temporary files
+*.tmp
+*.temp
 *.bak
 *.backup
-*.old
+
+# Extension development specific
+# Documentation (currently tracked - contains important project docs)
+# docs/
+
+# Ignore common temporary files in docs
+docs/*.lnk
+docs/*.tmp
+docs/Desktop - Shortcut.lnk
+
+# Test files
+test-results/
+coverage/
+
+# Debug files
+.debug/
+
+# Local development
+.local/
+
+# Backup files
 *.orig
-*.save
+*.rej
 
-# ===========================================
-# Project Specific
-# ===========================================
+# Lock files (typically tracked for dependency consistency)
+# Uncomment if you want to ignore lock files
+# package-lock.json
+# yarn.lock
 
-# Keep your branding assets (they're part of the project)
-# assets/branding/logo.png
-# assets/branding/logo@2x.png
+# Extension store files
+store-credentials.json
+store-config.json
 
-# Keep your extension icons (they're part of the project)
-# assets/icons/icon16.png
-# assets/icons/icon48.png
-# assets/icons/icon128.png
-
-# ===========================================
-# Notes
-# ===========================================
-
-# This .gitignore is designed for a Chrome Extension project
-# It excludes common development files while keeping your project assets
-# If you add build tools (webpack, rollup, etc.) later, you may need to add more entries 
+#Developer Docs
 docs/
